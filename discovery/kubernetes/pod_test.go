@@ -354,6 +354,13 @@ func TestPodDiscoveryUpdate(t *testing.T) {
 		Status: v1.PodStatus{
 			PodIP:  "1.2.3.4",
 			HostIP: "2.3.4.5",
+			Phase:  "Pending",
+			Conditions: []v1.PodCondition{
+				{
+					Type:   v1.PodReady,
+					Status: v1.ConditionFalse,
+				},
+			},
 		},
 	}
 	n, c := makeDiscovery(RolePod, NamespaceDiscovery{}, obj)
